@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsCamperCheckout" targetNamespace="http://tempuri.org/ctPOS_bDataSet.xsd" xmlns:mstns="http://tempuri.org/ctPOS_bDataSet.xsd" xmlns="http://tempuri.org/ctPOS_bDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ctPOS_bConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ctPOS_bConnectionString2 (MySettings)" PropertyReference="ApplicationSettings.CTPOS_F.My.MySettings.GlobalReference.Default.ctPOS_bConnectionString2" Provider="System.Data.OleDb">
+          </Connection>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ctPOS_bConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ctPOS_bConnectionString1 (MySettings)" PropertyReference="ApplicationSettings.CTPOS_F.My.MySettings.GlobalReference.Default.ctPOS_bConnectionString1" Provider="System.Data.OleDb">
+          </Connection>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ctmain_bConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ctmain_bConnectionString (MySettings)" PropertyReference="ApplicationSettings.CTPOS_F.My.MySettings.GlobalReference.Default.ctmain_bConnectionString" Provider="System.Data.OleDb">
+          </Connection>
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="commandcamperstatementtotalTableAdapter" GeneratorDataComponentClassName="commandcamperstatementtotalTableAdapter" Name="commandcamperstatementtotal" UserDataComponentName="commandcamperstatementtotalTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctPOS_bConnectionString1 (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     tblRecords.lngRecordID, tblRecords.strFirstName, tblRecords.strLastCoName, SUM(tblSalesDetail.curTotal) AS Total, 
+                      tblRegistrations.lngRegistrationID, tblRegistrations.lngBlockID
+FROM         (tblRecords INNER JOIN
+                      ((tblSales INNER JOIN
+                      (tblInventory INNER JOIN
+                      tblSalesDetail ON tblInventory.lngInventoryID = tblSalesDetail.lngInventoryID) ON tblSales.lngSaleID = tblSalesDetail.lngSaleID) INNER JOIN
+                      tblRegistrations ON tblSales.lngRegistrationID = tblRegistrations.lngRegistrationID) ON tblRecords.lngRecordID = tblRegistrations.lngRecordID)
+GROUP BY tblRecords.lngRecordID, tblRecords.strFirstName, tblRecords.strLastCoName, tblRegistrations.lngRegistrationID, tblRegistrations.lngBlockID</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngRecordID" DataSetColumn="lngRecordID" />
+              <Mapping SourceColumn="strFirstName" DataSetColumn="strFirstName" />
+              <Mapping SourceColumn="strLastCoName" DataSetColumn="strLastCoName" />
+              <Mapping SourceColumn="Total" DataSetColumn="Total" />
+              <Mapping SourceColumn="lngRegistrationID" DataSetColumn="lngRegistrationID" />
+              <Mapping SourceColumn="lngBlockID" DataSetColumn="lngBlockID" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblCampDefaultsTableAdapter" GeneratorDataComponentClassName="tblCampDefaultsTableAdapter" Name="tblCampDefaults" UserDataComponentName="tblCampDefaultsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctmain_bConnectionString (MySettings)" DbObjectName="tblCampDefaults" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="True" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>DELETE FROM `tblCampDefaults` WHERE ((`lngCampDefaultID` = ?) AND ((? = 1 AND `strCampName` IS NULL) OR (`strCampName` = ?)) AND ((? = 1 AND `strStoreName` IS NULL) OR (`strStoreName` = ?)) AND ((? = 1 AND `lngCampState` IS NULL) OR (`lngCampState` = ?)) AND ((? = 1 AND `strCampAddress` IS NULL) OR (`strCampAddress` = ?)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_lngCampDefaultID" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="lngCampDefaultID" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_strCampName" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="strCampName" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_strCampName" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="strCampName" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_strStoreName" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="strStoreName" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_strStoreName" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="strStoreName" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_lngCampState" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="lngCampState" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_lngCampState" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="lngCampState" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_strCampAddress" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="strCampAddress" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_strCampAddress" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="strCampAddress" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     lngCampDefaultID, strCampName, strStoreName, lngCampState, strCampAddress
+FROM         tblCampDefaults</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>UPDATE `tblCampDefaults` SET `strCampName` = ?, `strStoreName` = ?, `lngCampState` = ?, `strCampAddress` = ? WHERE ((`lngCampDefaultID` = ?) AND ((? = 1 AND `strCampName` IS NULL) OR (`strCampName` = ?)) AND ((? = 1 AND `strStoreName` IS NULL) OR (`strStoreName` = ?)) AND ((? = 1 AND `lngCampState` IS NULL) OR (`lngCampState` = ?)) AND ((? = 1 AND `strCampAddress` IS NULL) OR (`strCampAddress` = ?)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="strCampName" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="strCampName" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="strStoreName" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="strStoreName" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="lngCampState" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="lngCampState" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="strCampAddress" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="strCampAddress" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="False" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_lngCampDefaultID" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="lngCampDefaultID" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_strCampName" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="strCampName" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_strCampName" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="strCampName" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_strStoreName" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="strStoreName" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_strStoreName" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="strStoreName" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_lngCampState" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="lngCampState" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="Original_lngCampState" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="lngCampState" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="IsNull_strCampAddress" Precision="0" ProviderType="Integer" Scale="0" Size="0" SourceColumn="strCampAddress" SourceColumnNullMapping="True" SourceVersion="Original">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="Original_strCampAddress" Precision="0" ProviderType="VarWChar" Scale="0" Size="0" SourceColumn="strCampAddress" SourceColumnNullMapping="False" SourceVersion="Original">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngCampDefaultID" DataSetColumn="lngCampDefaultID" />
+              <Mapping SourceColumn="strCampName" DataSetColumn="strCampName" />
+              <Mapping SourceColumn="strStoreName" DataSetColumn="strStoreName" />
+              <Mapping SourceColumn="lngCampState" DataSetColumn="lngCampState" />
+              <Mapping SourceColumn="strCampAddress" DataSetColumn="strCampAddress" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="WidrawalsTableAdapter" GeneratorDataComponentClassName="WidrawalsTableAdapter" Name="Widrawals" UserDataComponentName="WidrawalsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctmain_bConnectionString (MySettings)" DbObjectName="tblTransactions" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     tblTransactions.lngRecordID, SUM(tblTransactions.curCharge) AS Withdrawal
+FROM         (tblBlock INNER JOIN
+                      (tblTransactions INNER JOIN
+                      tblRegistrations ON tblTransactions.lngRegistrationID = tblRegistrations.lngRegistrationID) ON tblBlock.lngBlockID = tblRegistrations.lngBlockID)
+WHERE     (tblTransactions.lngTransTypeID = 24) OR
+                      (tblTransactions.lngTransTypeID = 26) OR
+                      (tblTransactions.lngTransTypeID = 17)
+GROUP BY tblTransactions.lngRecordID</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngRecordID" DataSetColumn="lngRecordID" />
+              <Mapping SourceColumn="Withdrawal" DataSetColumn="Withdrawal" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AddtionalDepositsTableAdapter" GeneratorDataComponentClassName="AddtionalDepositsTableAdapter" Name="AddtionalDeposits" UserDataComponentName="AddtionalDepositsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctPOS_bConnectionString1 (MySettings)" DbObjectName="tblRegistrations" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>SELECT     tblRegistrations.lngRegistrationID, tblRegistrations.lngRecordID, SUM(tblTransactions.curPayment) AS AddDep
+FROM         (tblBlock INNER JOIN
+                      (tblTransactions INNER JOIN
+                      tblRegistrations ON tblTransactions.lngRegistrationID = tblRegistrations.lngRegistrationID) ON tblBlock.lngBlockID = tblRegistrations.lngBlockID)
+WHERE     (tblTransactions.lngTransTypeID = 27)
+GROUP BY tblRegistrations.lngRegistrationID, tblRegistrations.lngRecordID</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngRegistrationID" DataSetColumn="lngRegistrationID" />
+              <Mapping SourceColumn="lngRecordID" DataSetColumn="lngRecordID" />
+              <Mapping SourceColumn="AddDep" DataSetColumn="AddDep" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DepostisTableAdapter" GeneratorDataComponentClassName="DepostisTableAdapter" Name="Depostis" UserDataComponentName="DepostisTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctPOS_bConnectionString1 (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>SELECT     tblRegistrations.lngRegistrationID, tblRegistrations.lngRecordID, SUM(tblTransactions.curPayment) AS Dep, SUM(tblTransactions.curCharge) 
+                      AS Refund, tblTransactions.lngTransTypeID, Dep - Refund AS InitDep
+FROM         (tblBlock INNER JOIN
+                      (tblTransactions INNER JOIN
+                      tblRegistrations ON tblTransactions.lngRegistrationID = tblRegistrations.lngRegistrationID) ON tblBlock.lngBlockID = tblRegistrations.lngBlockID)
+WHERE     (tblTransactions.lngTransTypeID = 25)
+GROUP BY tblRegistrations.lngRegistrationID, tblRegistrations.lngRecordID, tblTransactions.lngTransTypeID</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngRegistrationID" DataSetColumn="lngRegistrationID" />
+              <Mapping SourceColumn="lngRecordID" DataSetColumn="lngRecordID" />
+              <Mapping SourceColumn="Dep" DataSetColumn="Dep" />
+              <Mapping SourceColumn="Refund" DataSetColumn="Refund" />
+              <Mapping SourceColumn="lngTransTypeID" DataSetColumn="lngTransTypeID" />
+              <Mapping SourceColumn="InitDep" DataSetColumn="InitDep" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TaxTableAdapter" GeneratorDataComponentClassName="TaxTableAdapter" Name="Tax" UserDataComponentName="TaxTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctPOS_bConnectionString2 (MySettings)" DbObjectName="tblSales" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     lngRegistrationID, SUM(curTax) AS TAX, SUM(curTotalCharge) AS CurTotalCharge
+FROM         tblSales
+GROUP BY lngRegistrationID</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngRegistrationID" DataSetColumn="lngRegistrationID" />
+              <Mapping SourceColumn="TAX" DataSetColumn="TAX" />
+              <Mapping SourceColumn="CurTotalCharge" DataSetColumn="CurTotalCharge" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsCamperCheckout" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsCamperCheckout" msprop:Generator_DataSetName="dsCamperCheckout">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="qryCamperCheckout" msprop:Generator_UserTableName="qryCamperCheckout" msprop:Generator_RowDeletedName="qryCamperCheckoutRowDeleted" msprop:Generator_RowChangedName="qryCamperCheckoutRowChanged" msprop:Generator_RowClassName="qryCamperCheckoutRow" msprop:Generator_RowChangingName="qryCamperCheckoutRowChanging" msprop:Generator_RowEvArgName="qryCamperCheckoutRowChangeEvent" msprop:Generator_RowEvHandlerName="qryCamperCheckoutRowChangeEventHandler" msprop:Generator_TableClassName="qryCamperCheckoutDataTable" msprop:Generator_TableVarName="tableqryCamperCheckout" msprop:Generator_RowDeletingName="qryCamperCheckoutRowDeleting" msprop:Generator_TablePropName="qryCamperCheckout">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngRegistrationID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="lngRegistrationID" msprop:Generator_ColumnPropNameInRow="lngRegistrationID" msprop:Generator_ColumnVarNameInTable="columnlngRegistrationID" msprop:Generator_ColumnPropNameInTable="lngRegistrationIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="lngRecordID" msprop:Generator_UserColumnName="lngRecordID" msprop:Generator_ColumnPropNameInRow="lngRecordID" msprop:Generator_ColumnVarNameInTable="columnlngRecordID" msprop:Generator_ColumnPropNameInTable="lngRecordIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="strLastCoName" msprop:Generator_UserColumnName="strLastCoName" msprop:Generator_ColumnPropNameInRow="strLastCoName" msprop:Generator_ColumnVarNameInTable="columnstrLastCoName" msprop:Generator_ColumnPropNameInTable="strLastCoNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strFirstName" msprop:Generator_UserColumnName="strFirstName" msprop:Generator_ColumnPropNameInRow="strFirstName" msprop:Generator_ColumnVarNameInTable="columnstrFirstName" msprop:Generator_ColumnPropNameInTable="strFirstNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strHousingName" msprop:Generator_UserColumnName="strHousingName" msprop:Generator_ColumnPropNameInRow="strHousingName" msprop:Generator_ColumnVarNameInTable="columnstrHousingName" msprop:Generator_ColumnPropNameInTable="strHousingNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strBlockCode" msprop:Generator_UserColumnName="strBlockCode" msprop:Generator_ColumnPropNameInRow="strBlockCode" msprop:Generator_ColumnVarNameInTable="columnstrBlockCode" msprop:Generator_ColumnPropNameInTable="strBlockCodeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lngInventoryID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="lngInventoryID" msprop:Generator_ColumnPropNameInRow="lngInventoryID" msprop:Generator_ColumnVarNameInTable="columnlngInventoryID" msprop:Generator_ColumnPropNameInTable="lngInventoryIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="strItemName" msprop:Generator_UserColumnName="strItemName" msprop:Generator_ColumnPropNameInRow="strItemName" msprop:Generator_ColumnVarNameInTable="columnstrItemName" msprop:Generator_ColumnPropNameInTable="strItemNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="24" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lngQuantity" msprop:Generator_UserColumnName="lngQuantity" msprop:Generator_ColumnPropNameInRow="lngQuantity" msprop:Generator_ColumnVarNameInTable="columnlngQuantity" msprop:Generator_ColumnPropNameInTable="lngQuantityColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="lngWeekID" msprop:Generator_UserColumnName="lngWeekID" msprop:Generator_ColumnPropNameInRow="lngWeekID" msprop:Generator_ColumnVarNameInTable="columnlngWeekID" msprop:Generator_ColumnPropNameInTable="lngWeekIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="lngSiteID" msprop:Generator_UserColumnName="lngSiteID" msprop:Generator_ColumnPropNameInRow="lngSiteID" msprop:Generator_ColumnVarNameInTable="columnlngSiteID" msprop:Generator_ColumnPropNameInTable="lngSiteIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="curTotal" msprop:Generator_UserColumnName="curTotal" msprop:Generator_ColumnPropNameInRow="curTotal" msprop:Generator_ColumnVarNameInTable="columncurTotal" msprop:Generator_ColumnPropNameInTable="curTotalColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="commandcamperstatementtotal" msprop:Generator_UserTableName="commandcamperstatementtotal" msprop:Generator_RowDeletedName="commandcamperstatementtotalRowDeleted" msprop:Generator_RowChangedName="commandcamperstatementtotalRowChanged" msprop:Generator_RowClassName="commandcamperstatementtotalRow" msprop:Generator_RowChangingName="commandcamperstatementtotalRowChanging" msprop:Generator_RowEvArgName="commandcamperstatementtotalRowChangeEvent" msprop:Generator_RowEvHandlerName="commandcamperstatementtotalRowChangeEventHandler" msprop:Generator_TableClassName="commandcamperstatementtotalDataTable" msprop:Generator_TableVarName="tablecommandcamperstatementtotal" msprop:Generator_RowDeletingName="commandcamperstatementtotalRowDeleting" msprop:Generator_TablePropName="commandcamperstatementtotal">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngRecordID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="lngRecordID" msprop:Generator_ColumnVarNameInTable="columnlngRecordID" msprop:Generator_ColumnPropNameInRow="lngRecordID" msprop:Generator_ColumnPropNameInTable="lngRecordIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="strFirstName" msprop:Generator_UserColumnName="strFirstName" msprop:Generator_ColumnVarNameInTable="columnstrFirstName" msprop:Generator_ColumnPropNameInRow="strFirstName" msprop:Generator_ColumnPropNameInTable="strFirstNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strLastCoName" msprop:Generator_UserColumnName="strLastCoName" msprop:Generator_ColumnVarNameInTable="columnstrLastCoName" msprop:Generator_ColumnPropNameInRow="strLastCoName" msprop:Generator_ColumnPropNameInTable="strLastCoNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Total" msprop:Generator_UserColumnName="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="lngRegistrationID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="lngRegistrationID" msprop:Generator_ColumnVarNameInTable="columnlngRegistrationID" msprop:Generator_ColumnPropNameInRow="lngRegistrationID" msprop:Generator_ColumnPropNameInTable="lngRegistrationIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="lngBlockID" msprop:Generator_UserColumnName="lngBlockID" msprop:Generator_ColumnVarNameInTable="columnlngBlockID" msprop:Generator_ColumnPropNameInRow="lngBlockID" msprop:Generator_ColumnPropNameInTable="lngBlockIDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblCampDefaults" msprop:Generator_UserTableName="tblCampDefaults" msprop:Generator_RowDeletedName="tblCampDefaultsRowDeleted" msprop:Generator_RowChangedName="tblCampDefaultsRowChanged" msprop:Generator_RowClassName="tblCampDefaultsRow" msprop:Generator_RowChangingName="tblCampDefaultsRowChanging" msprop:Generator_RowEvArgName="tblCampDefaultsRowChangeEvent" msprop:Generator_RowEvHandlerName="tblCampDefaultsRowChangeEventHandler" msprop:Generator_TableClassName="tblCampDefaultsDataTable" msprop:Generator_TableVarName="tabletblCampDefaults" msprop:Generator_RowDeletingName="tblCampDefaultsRowDeleting" msprop:Generator_TablePropName="tblCampDefaults">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngCampDefaultID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="lngCampDefaultID" msprop:Generator_ColumnVarNameInTable="columnlngCampDefaultID" msprop:Generator_ColumnPropNameInRow="lngCampDefaultID" msprop:Generator_ColumnPropNameInTable="lngCampDefaultIDColumn" type="xs:int" />
+              <xs:element name="strCampName" msprop:Generator_UserColumnName="strCampName" msprop:Generator_ColumnVarNameInTable="columnstrCampName" msprop:Generator_ColumnPropNameInRow="strCampName" msprop:Generator_ColumnPropNameInTable="strCampNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strStoreName" msprop:Generator_UserColumnName="strStoreName" msprop:Generator_ColumnVarNameInTable="columnstrStoreName" msprop:Generator_ColumnPropNameInRow="strStoreName" msprop:Generator_ColumnPropNameInTable="strStoreNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lngCampState" msprop:Generator_UserColumnName="lngCampState" msprop:Generator_ColumnVarNameInTable="columnlngCampState" msprop:Generator_ColumnPropNameInRow="lngCampState" msprop:Generator_ColumnPropNameInTable="lngCampStateColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="strCampAddress" msprop:Generator_UserColumnName="strCampAddress" msprop:Generator_ColumnVarNameInTable="columnstrCampAddress" msprop:Generator_ColumnPropNameInRow="strCampAddress" msprop:Generator_ColumnPropNameInTable="strCampAddressColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Widrawals" msprop:Generator_UserTableName="Widrawals" msprop:Generator_RowDeletedName="WidrawalsRowDeleted" msprop:Generator_RowChangedName="WidrawalsRowChanged" msprop:Generator_RowClassName="WidrawalsRow" msprop:Generator_RowChangingName="WidrawalsRowChanging" msprop:Generator_RowEvArgName="WidrawalsRowChangeEvent" msprop:Generator_RowEvHandlerName="WidrawalsRowChangeEventHandler" msprop:Generator_TableClassName="WidrawalsDataTable" msprop:Generator_TableVarName="tableWidrawals" msprop:Generator_RowDeletingName="WidrawalsRowDeleting" msprop:Generator_TablePropName="Widrawals">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngRecordID" msprop:Generator_UserColumnName="lngRecordID" msprop:Generator_ColumnPropNameInRow="lngRecordID" msprop:Generator_ColumnVarNameInTable="columnlngRecordID" msprop:Generator_ColumnPropNameInTable="lngRecordIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Withdrawal" msprop:Generator_UserColumnName="Withdrawal" msprop:Generator_ColumnPropNameInRow="Withdrawal" msprop:Generator_ColumnVarNameInTable="columnWithdrawal" msprop:Generator_ColumnPropNameInTable="WithdrawalColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AddtionalDeposits" msprop:Generator_UserTableName="AddtionalDeposits" msprop:Generator_RowDeletedName="AddtionalDepositsRowDeleted" msprop:Generator_RowChangedName="AddtionalDepositsRowChanged" msprop:Generator_RowClassName="AddtionalDepositsRow" msprop:Generator_RowChangingName="AddtionalDepositsRowChanging" msprop:Generator_RowEvArgName="AddtionalDepositsRowChangeEvent" msprop:Generator_RowEvHandlerName="AddtionalDepositsRowChangeEventHandler" msprop:Generator_TableClassName="AddtionalDepositsDataTable" msprop:Generator_TableVarName="tableAddtionalDeposits" msprop:Generator_RowDeletingName="AddtionalDepositsRowDeleting" msprop:Generator_TablePropName="AddtionalDeposits">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngRegistrationID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="lngRegistrationID" msprop:Generator_ColumnPropNameInRow="lngRegistrationID" msprop:Generator_ColumnVarNameInTable="columnlngRegistrationID" msprop:Generator_ColumnPropNameInTable="lngRegistrationIDColumn" type="xs:int" />
+              <xs:element name="lngRecordID" msprop:Generator_UserColumnName="lngRecordID" msprop:Generator_ColumnPropNameInRow="lngRecordID" msprop:Generator_ColumnVarNameInTable="columnlngRecordID" msprop:Generator_ColumnPropNameInTable="lngRecordIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="AddDep" msprop:Generator_UserColumnName="AddDep" msprop:Generator_ColumnPropNameInRow="AddDep" msprop:Generator_ColumnVarNameInTable="columnAddDep" msprop:Generator_ColumnPropNameInTable="AddDepColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Depostis" msprop:Generator_UserTableName="Depostis" msprop:Generator_RowDeletedName="DepostisRowDeleted" msprop:Generator_RowChangedName="DepostisRowChanged" msprop:Generator_RowClassName="DepostisRow" msprop:Generator_RowChangingName="DepostisRowChanging" msprop:Generator_RowEvArgName="DepostisRowChangeEvent" msprop:Generator_RowEvHandlerName="DepostisRowChangeEventHandler" msprop:Generator_TableClassName="DepostisDataTable" msprop:Generator_TableVarName="tableDepostis" msprop:Generator_RowDeletingName="DepostisRowDeleting" msprop:Generator_TablePropName="Depostis">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngRegistrationID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="lngRegistrationID" msprop:Generator_ColumnPropNameInRow="lngRegistrationID" msprop:Generator_ColumnVarNameInTable="columnlngRegistrationID" msprop:Generator_ColumnPropNameInTable="lngRegistrationIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="lngRecordID" msprop:Generator_UserColumnName="lngRecordID" msprop:Generator_ColumnPropNameInRow="lngRecordID" msprop:Generator_ColumnVarNameInTable="columnlngRecordID" msprop:Generator_ColumnPropNameInTable="lngRecordIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Dep" msprop:Generator_UserColumnName="Dep" msprop:Generator_ColumnPropNameInRow="Dep" msprop:Generator_ColumnVarNameInTable="columnDep" msprop:Generator_ColumnPropNameInTable="DepColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Refund" msprop:Generator_UserColumnName="Refund" msprop:Generator_ColumnPropNameInRow="Refund" msprop:Generator_ColumnVarNameInTable="columnRefund" msprop:Generator_ColumnPropNameInTable="RefundColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="lngTransTypeID" msprop:Generator_UserColumnName="lngTransTypeID" msprop:Generator_ColumnPropNameInRow="lngTransTypeID" msprop:Generator_ColumnVarNameInTable="columnlngTransTypeID" msprop:Generator_ColumnPropNameInTable="lngTransTypeIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="InitDep" msdata:ReadOnly="true" msprop:Generator_UserColumnName="InitDep" msprop:Generator_ColumnPropNameInRow="InitDep" msprop:Generator_ColumnVarNameInTable="columnInitDep" msprop:Generator_ColumnPropNameInTable="InitDepColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Tax" msprop:Generator_UserTableName="Tax" msprop:Generator_RowDeletedName="TaxRowDeleted" msprop:Generator_RowChangedName="TaxRowChanged" msprop:Generator_RowClassName="TaxRow" msprop:Generator_RowChangingName="TaxRowChanging" msprop:Generator_RowEvArgName="TaxRowChangeEvent" msprop:Generator_RowEvHandlerName="TaxRowChangeEventHandler" msprop:Generator_TableClassName="TaxDataTable" msprop:Generator_TableVarName="tableTax" msprop:Generator_RowDeletingName="TaxRowDeleting" msprop:Generator_TablePropName="Tax">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngRegistrationID" msprop:Generator_UserColumnName="lngRegistrationID" msprop:Generator_ColumnPropNameInRow="lngRegistrationID" msprop:Generator_ColumnVarNameInTable="columnlngRegistrationID" msprop:Generator_ColumnPropNameInTable="lngRegistrationIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="TAX" msprop:Generator_UserColumnName="TAX" msprop:Generator_ColumnPropNameInRow="TAX" msprop:Generator_ColumnVarNameInTable="columnTAX" msprop:Generator_ColumnPropNameInTable="TAXColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CurTotalCharge" msprop:Generator_UserColumnName="CurTotalCharge" msprop:Generator_ColumnPropNameInRow="CurTotalCharge" msprop:Generator_ColumnVarNameInTable="columnCurTotalCharge" msprop:Generator_ColumnPropNameInTable="CurTotalChargeColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblCampDefaults" />
+      <xs:field xpath="mstns:lngCampDefaultID" />
+    </xs:unique>
+    <xs:unique name="AddtionalDeposits_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:AddtionalDeposits" />
+      <xs:field xpath="mstns:lngRegistrationID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

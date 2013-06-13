@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsSummaryReport" targetNamespace="http://tempuri.org/dsSummaryReport.xsd" xmlns:mstns="http://tempuri.org/dsSummaryReport.xsd" xmlns="http://tempuri.org/dsSummaryReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ctPOS_bConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ctPOS_bConnectionString1 (MySettings)" PropertyReference="ApplicationSettings.CTPOS_F.My.MySettings.GlobalReference.Default.ctPOS_bConnectionString1" Provider="System.Data.OleDb">
+          </Connection>
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="qrySalesSummaryTableAdapter" GeneratorDataComponentClassName="qrySalesSummaryTableAdapter" Name="qrySalesSummary" UserDataComponentName="qrySalesSummaryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctPOS_bConnectionString1 (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     tblInventory.lngInvCategoryID, tblInventory.strStockCode, tblInventory.strItemName, tblInvCodeCategory.strInvCategory, 
+                      SUM(tblSalesDetail.lngQuantity) AS SumOflngQuantity, SUM(tblSalesDetail.curTax) AS SumOfcurTax, SUM(tblSalesDetail.curTotal) AS SumOfcurTotal, 
+                      tblInventory.intCurrentQty, tblInventory.curListPrice
+FROM         (tblSales RIGHT OUTER JOIN
+                      ((tblSalesDetail RIGHT OUTER JOIN
+                      tblInventory ON tblSalesDetail.lngInventoryID = tblInventory.lngInventoryID) INNER JOIN
+                      tblInvCodeCategory ON tblInventory.lngInvCategoryID = tblInvCodeCategory.lngInvCategoryID) ON tblSales.lngSaleID = tblSalesDetail.lngSaleID)
+GROUP BY tblInventory.lngInvCategoryID, tblInventory.strStockCode, tblInventory.strItemName, tblInvCodeCategory.strInvCategory, tblInventory.intCurrentQty, 
+                      tblInventory.curListPrice</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngInvCategoryID" DataSetColumn="lngInvCategoryID" />
+              <Mapping SourceColumn="strStockCode" DataSetColumn="strStockCode" />
+              <Mapping SourceColumn="strItemName" DataSetColumn="strItemName" />
+              <Mapping SourceColumn="strInvCategory" DataSetColumn="strInvCategory" />
+              <Mapping SourceColumn="SumOflngQuantity" DataSetColumn="SumOflngQuantity" />
+              <Mapping SourceColumn="SumOfcurTax" DataSetColumn="SumOfcurTax" />
+              <Mapping SourceColumn="SumOfcurTotal" DataSetColumn="SumOfcurTotal" />
+              <Mapping SourceColumn="intCurrentQty" DataSetColumn="intCurrentQty" />
+              <Mapping SourceColumn="curListPrice" DataSetColumn="curListPrice" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="qrySalesSummaryByDateTableAdapter" GeneratorDataComponentClassName="qrySalesSummaryByDateTableAdapter" Name="qrySalesSummaryByDate" UserDataComponentName="qrySalesSummaryByDateTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctPOS_bConnectionString1 (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     tblInventory.strStockCode, tblSales.dteSaleDate, tblInventory.strItemName, tblInvCodeCategory.strInvCategory, SUM(tblSalesDetail.lngQuantity) 
+                      AS SumOflngQuantity, SUM(tblSalesDetail.curTax) AS SumOfcurTax, SUM(tblSalesDetail.curTotal) AS SumOfcurTotal, tblInventory.intCurrentQty, 
+                      tblInventory.curListPrice, tblInventory.lngInvCategoryID
+FROM         (tblSales RIGHT OUTER JOIN
+                      ((tblSalesDetail RIGHT OUTER JOIN
+                      tblInventory ON tblSalesDetail.lngInventoryID = tblInventory.lngInventoryID) INNER JOIN
+                      tblInvCodeCategory ON tblInventory.lngInvCategoryID = tblInvCodeCategory.lngInvCategoryID) ON tblSales.lngSaleID = tblSalesDetail.lngSaleID)
+GROUP BY tblInventory.strStockCode, tblSales.dteSaleDate, tblInventory.strItemName, tblInvCodeCategory.strInvCategory, tblInventory.intCurrentQty, 
+                      tblInventory.curListPrice, tblInventory.lngInvCategoryID</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strStockCode" DataSetColumn="strStockCode" />
+              <Mapping SourceColumn="dteSaleDate" DataSetColumn="dteSaleDate" />
+              <Mapping SourceColumn="strItemName" DataSetColumn="strItemName" />
+              <Mapping SourceColumn="strInvCategory" DataSetColumn="strInvCategory" />
+              <Mapping SourceColumn="SumOflngQuantity" DataSetColumn="SumOflngQuantity" />
+              <Mapping SourceColumn="SumOfcurTax" DataSetColumn="SumOfcurTax" />
+              <Mapping SourceColumn="SumOfcurTotal" DataSetColumn="SumOfcurTotal" />
+              <Mapping SourceColumn="intCurrentQty" DataSetColumn="intCurrentQty" />
+              <Mapping SourceColumn="curListPrice" DataSetColumn="curListPrice" />
+              <Mapping SourceColumn="lngInvCategoryID" DataSetColumn="lngInvCategoryID" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsSummaryReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsSummaryReport" msprop:Generator_DataSetName="dsSummaryReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="qrySalesSummary" msprop:Generator_UserTableName="qrySalesSummary" msprop:Generator_RowDeletedName="qrySalesSummaryRowDeleted" msprop:Generator_TableClassName="qrySalesSummaryDataTable" msprop:Generator_RowChangedName="qrySalesSummaryRowChanged" msprop:Generator_RowClassName="qrySalesSummaryRow" msprop:Generator_RowChangingName="qrySalesSummaryRowChanging" msprop:Generator_RowEvArgName="qrySalesSummaryRowChangeEvent" msprop:Generator_RowEvHandlerName="qrySalesSummaryRowChangeEventHandler" msprop:Generator_TablePropName="qrySalesSummary" msprop:Generator_TableVarName="tableqrySalesSummary" msprop:Generator_RowDeletingName="qrySalesSummaryRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngInvCategoryID" msprop:Generator_UserColumnName="lngInvCategoryID" msprop:Generator_ColumnPropNameInRow="lngInvCategoryID" msprop:Generator_ColumnVarNameInTable="columnlngInvCategoryID" msprop:Generator_ColumnPropNameInTable="lngInvCategoryIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="strStockCode" msprop:Generator_UserColumnName="strStockCode" msprop:Generator_ColumnPropNameInRow="strStockCode" msprop:Generator_ColumnVarNameInTable="columnstrStockCode" msprop:Generator_ColumnPropNameInTable="strStockCodeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strItemName" msprop:Generator_UserColumnName="strItemName" msprop:Generator_ColumnPropNameInRow="strItemName" msprop:Generator_ColumnVarNameInTable="columnstrItemName" msprop:Generator_ColumnPropNameInTable="strItemNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="24" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strInvCategory" msprop:Generator_UserColumnName="strInvCategory" msprop:Generator_ColumnPropNameInRow="strInvCategory" msprop:Generator_ColumnVarNameInTable="columnstrInvCategory" msprop:Generator_ColumnPropNameInTable="strInvCategoryColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SumOflngQuantity" msprop:Generator_UserColumnName="SumOflngQuantity" msprop:Generator_ColumnPropNameInRow="SumOflngQuantity" msprop:Generator_ColumnVarNameInTable="columnSumOflngQuantity" msprop:Generator_ColumnPropNameInTable="SumOflngQuantityColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="SumOfcurTax" msprop:Generator_UserColumnName="SumOfcurTax" msprop:Generator_ColumnPropNameInRow="SumOfcurTax" msprop:Generator_ColumnVarNameInTable="columnSumOfcurTax" msprop:Generator_ColumnPropNameInTable="SumOfcurTaxColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SumOfcurTotal" msprop:Generator_UserColumnName="SumOfcurTotal" msprop:Generator_ColumnPropNameInRow="SumOfcurTotal" msprop:Generator_ColumnVarNameInTable="columnSumOfcurTotal" msprop:Generator_ColumnPropNameInTable="SumOfcurTotalColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intCurrentQty" msprop:Generator_UserColumnName="intCurrentQty" msprop:Generator_ColumnPropNameInRow="intCurrentQty" msprop:Generator_ColumnVarNameInTable="columnintCurrentQty" msprop:Generator_ColumnPropNameInTable="intCurrentQtyColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="curListPrice" msprop:Generator_UserColumnName="curListPrice" msprop:Generator_ColumnPropNameInRow="curListPrice" msprop:Generator_ColumnVarNameInTable="columncurListPrice" msprop:Generator_ColumnPropNameInTable="curListPriceColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="qrySalesSummaryByDate" msprop:Generator_UserTableName="qrySalesSummaryByDate" msprop:Generator_RowDeletedName="qrySalesSummaryByDateRowDeleted" msprop:Generator_TableClassName="qrySalesSummaryByDateDataTable" msprop:Generator_RowChangedName="qrySalesSummaryByDateRowChanged" msprop:Generator_RowClassName="qrySalesSummaryByDateRow" msprop:Generator_RowChangingName="qrySalesSummaryByDateRowChanging" msprop:Generator_RowEvArgName="qrySalesSummaryByDateRowChangeEvent" msprop:Generator_RowEvHandlerName="qrySalesSummaryByDateRowChangeEventHandler" msprop:Generator_TablePropName="qrySalesSummaryByDate" msprop:Generator_TableVarName="tableqrySalesSummaryByDate" msprop:Generator_RowDeletingName="qrySalesSummaryByDateRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strStockCode" msprop:Generator_UserColumnName="strStockCode" msprop:Generator_ColumnPropNameInRow="strStockCode" msprop:Generator_ColumnVarNameInTable="columnstrStockCode" msprop:Generator_ColumnPropNameInTable="strStockCodeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteSaleDate" msprop:Generator_UserColumnName="dteSaleDate" msprop:Generator_ColumnPropNameInRow="dteSaleDate" msprop:Generator_ColumnVarNameInTable="columndteSaleDate" msprop:Generator_ColumnPropNameInTable="dteSaleDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="strItemName" msprop:Generator_UserColumnName="strItemName" msprop:Generator_ColumnPropNameInRow="strItemName" msprop:Generator_ColumnVarNameInTable="columnstrItemName" msprop:Generator_ColumnPropNameInTable="strItemNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="24" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strInvCategory" msprop:Generator_UserColumnName="strInvCategory" msprop:Generator_ColumnPropNameInRow="strInvCategory" msprop:Generator_ColumnVarNameInTable="columnstrInvCategory" msprop:Generator_ColumnPropNameInTable="strInvCategoryColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SumOflngQuantity" msprop:Generator_UserColumnName="SumOflngQuantity" msprop:Generator_ColumnPropNameInRow="SumOflngQuantity" msprop:Generator_ColumnVarNameInTable="columnSumOflngQuantity" msprop:Generator_ColumnPropNameInTable="SumOflngQuantityColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="SumOfcurTax" msprop:Generator_UserColumnName="SumOfcurTax" msprop:Generator_ColumnPropNameInRow="SumOfcurTax" msprop:Generator_ColumnVarNameInTable="columnSumOfcurTax" msprop:Generator_ColumnPropNameInTable="SumOfcurTaxColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SumOfcurTotal" msprop:Generator_UserColumnName="SumOfcurTotal" msprop:Generator_ColumnPropNameInRow="SumOfcurTotal" msprop:Generator_ColumnVarNameInTable="columnSumOfcurTotal" msprop:Generator_ColumnPropNameInTable="SumOfcurTotalColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intCurrentQty" msprop:Generator_UserColumnName="intCurrentQty" msprop:Generator_ColumnPropNameInRow="intCurrentQty" msprop:Generator_ColumnVarNameInTable="columnintCurrentQty" msprop:Generator_ColumnPropNameInTable="intCurrentQtyColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="curListPrice" msprop:Generator_UserColumnName="curListPrice" msprop:Generator_ColumnPropNameInRow="curListPrice" msprop:Generator_ColumnVarNameInTable="columncurListPrice" msprop:Generator_ColumnPropNameInTable="curListPriceColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="lngInvCategoryID" msprop:Generator_UserColumnName="lngInvCategoryID" msprop:Generator_ColumnPropNameInRow="lngInvCategoryID" msprop:Generator_ColumnVarNameInTable="columnlngInvCategoryID" msprop:Generator_ColumnPropNameInTable="lngInvCategoryIDColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsMainCamperCheckout" targetNamespace="http://tempuri.org/DsMainCamperCheckout.xsd" xmlns:mstns="http://tempuri.org/DsMainCamperCheckout.xsd" xmlns="http://tempuri.org/DsMainCamperCheckout.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ctPOS_bConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ctPOS_bConnectionString1 (MySettings)" PropertyReference="ApplicationSettings.CTPOS_F.My.MySettings.GlobalReference.Default.ctPOS_bConnectionString1" Provider="System.Data.OleDb">
+          </Connection>
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="WidrawalsTableAdapter" GeneratorDataComponentClassName="WidrawalsTableAdapter" Name="Widrawals" UserDataComponentName="WidrawalsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctPOS_bConnectionString1 (MySettings)" DbObjectName="tblTransactions" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     tblTransactions.lngRecordID, SUM(tblTransactions.curCharge) AS Withdrawal
+FROM         (tblBlock INNER JOIN
+                      (tblTransactions INNER JOIN
+                      tblRegistrations ON tblTransactions.lngRegistrationID = tblRegistrations.lngRegistrationID) ON tblBlock.lngBlockID = tblRegistrations.lngBlockID)
+WHERE     (tblTransactions.lngTransTypeID = 24) OR
+                      (tblTransactions.lngTransTypeID = 26) OR
+                      (tblTransactions.lngTransTypeID = 17) OR
+                      (tblTransactions.lngTransTypeID = 6) OR
+                      (tblTransactions.lngTransTypeID = 5)
+GROUP BY tblTransactions.lngRecordID</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngRecordID" DataSetColumn="lngRecordID" />
+              <Mapping SourceColumn="Withdrawal" DataSetColumn="Withdrawal" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AddtionalDepositsTableAdapter" GeneratorDataComponentClassName="AddtionalDepositsTableAdapter" Name="AddtionalDeposits" UserDataComponentName="AddtionalDepositsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctPOS_bConnectionString1 (MySettings)" DbObjectName="tblRegistrations" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     tblRegistrations.lngRegistrationID, tblRegistrations.lngRecordID, SUM(tblTransactions.curPayment) AS AddDep
+FROM         (tblBlock INNER JOIN
+                      (tblTransactions INNER JOIN
+                      tblRegistrations ON tblTransactions.lngRegistrationID = tblRegistrations.lngRegistrationID) ON tblBlock.lngBlockID = tblRegistrations.lngBlockID)
+WHERE     (tblTransactions.lngTransTypeID = 27)
+GROUP BY tblRegistrations.lngRegistrationID, tblRegistrations.lngRecordID</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngRegistrationID" DataSetColumn="lngRegistrationID" />
+              <Mapping SourceColumn="lngRecordID" DataSetColumn="lngRecordID" />
+              <Mapping SourceColumn="AddDep" DataSetColumn="AddDep" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DepostisTableAdapter" GeneratorDataComponentClassName="DepostisTableAdapter" Name="Depostis" UserDataComponentName="DepostisTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctPOS_bConnectionString1 (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     tblRegistrations.lngRegistrationID, tblRegistrations.lngRecordID, SUM(tblTransactions.curPayment) AS Dep, SUM(tblTransactions.curCharge) 
+                      AS Refund, tblTransactions.lngTransTypeID, Dep - Refund AS InitDep
+FROM         (tblBlock INNER JOIN
+                      (tblTransactions INNER JOIN
+                      tblRegistrations ON tblTransactions.lngRegistrationID = tblRegistrations.lngRegistrationID) ON tblBlock.lngBlockID = tblRegistrations.lngBlockID)
+WHERE     (tblTransactions.lngTransTypeID = 25)
+GROUP BY tblRegistrations.lngRegistrationID, tblRegistrations.lngRecordID, tblTransactions.lngTransTypeID</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngRegistrationID" DataSetColumn="lngRegistrationID" />
+              <Mapping SourceColumn="lngRecordID" DataSetColumn="lngRecordID" />
+              <Mapping SourceColumn="Dep" DataSetColumn="Dep" />
+              <Mapping SourceColumn="Refund" DataSetColumn="Refund" />
+              <Mapping SourceColumn="lngTransTypeID" DataSetColumn="lngTransTypeID" />
+              <Mapping SourceColumn="InitDep" DataSetColumn="InitDep" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsMainCamperCheckout" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DsMainCamperCheckout" msprop:Generator_DataSetName="DsMainCamperCheckout">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Widrawals" msprop:Generator_UserTableName="Widrawals" msprop:Generator_RowDeletedName="WidrawalsRowDeleted" msprop:Generator_TableClassName="WidrawalsDataTable" msprop:Generator_RowChangedName="WidrawalsRowChanged" msprop:Generator_RowClassName="WidrawalsRow" msprop:Generator_RowChangingName="WidrawalsRowChanging" msprop:Generator_RowEvArgName="WidrawalsRowChangeEvent" msprop:Generator_RowEvHandlerName="WidrawalsRowChangeEventHandler" msprop:Generator_TablePropName="Widrawals" msprop:Generator_TableVarName="tableWidrawals" msprop:Generator_RowDeletingName="WidrawalsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngRecordID" msprop:Generator_UserColumnName="lngRecordID" msprop:Generator_ColumnPropNameInRow="lngRecordID" msprop:Generator_ColumnVarNameInTable="columnlngRecordID" msprop:Generator_ColumnPropNameInTable="lngRecordIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Withdrawal" msprop:Generator_UserColumnName="Withdrawal" msprop:Generator_ColumnPropNameInRow="Withdrawal" msprop:Generator_ColumnVarNameInTable="columnWithdrawal" msprop:Generator_ColumnPropNameInTable="WithdrawalColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AddtionalDeposits" msprop:Generator_UserTableName="AddtionalDeposits" msprop:Generator_RowDeletedName="AddtionalDepositsRowDeleted" msprop:Generator_TableClassName="AddtionalDepositsDataTable" msprop:Generator_RowChangedName="AddtionalDepositsRowChanged" msprop:Generator_RowClassName="AddtionalDepositsRow" msprop:Generator_RowChangingName="AddtionalDepositsRowChanging" msprop:Generator_RowEvArgName="AddtionalDepositsRowChangeEvent" msprop:Generator_RowEvHandlerName="AddtionalDepositsRowChangeEventHandler" msprop:Generator_TablePropName="AddtionalDeposits" msprop:Generator_TableVarName="tableAddtionalDeposits" msprop:Generator_RowDeletingName="AddtionalDepositsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngRegistrationID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="lngRegistrationID" msprop:Generator_ColumnPropNameInRow="lngRegistrationID" msprop:Generator_ColumnVarNameInTable="columnlngRegistrationID" msprop:Generator_ColumnPropNameInTable="lngRegistrationIDColumn" type="xs:int" />
+              <xs:element name="lngRecordID" msprop:Generator_UserColumnName="lngRecordID" msprop:Generator_ColumnPropNameInRow="lngRecordID" msprop:Generator_ColumnVarNameInTable="columnlngRecordID" msprop:Generator_ColumnPropNameInTable="lngRecordIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="AddDep" msprop:Generator_UserColumnName="AddDep" msprop:Generator_ColumnPropNameInRow="AddDep" msprop:Generator_ColumnVarNameInTable="columnAddDep" msprop:Generator_ColumnPropNameInTable="AddDepColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Depostis" msprop:Generator_UserTableName="Depostis" msprop:Generator_RowDeletedName="DepostisRowDeleted" msprop:Generator_TableClassName="DepostisDataTable" msprop:Generator_RowChangedName="DepostisRowChanged" msprop:Generator_RowClassName="DepostisRow" msprop:Generator_RowChangingName="DepostisRowChanging" msprop:Generator_RowEvArgName="DepostisRowChangeEvent" msprop:Generator_RowEvHandlerName="DepostisRowChangeEventHandler" msprop:Generator_TablePropName="Depostis" msprop:Generator_TableVarName="tableDepostis" msprop:Generator_RowDeletingName="DepostisRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngRegistrationID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="lngRegistrationID" msprop:Generator_ColumnPropNameInRow="lngRegistrationID" msprop:Generator_ColumnVarNameInTable="columnlngRegistrationID" msprop:Generator_ColumnPropNameInTable="lngRegistrationIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="lngRecordID" msprop:Generator_UserColumnName="lngRecordID" msprop:Generator_ColumnPropNameInRow="lngRecordID" msprop:Generator_ColumnVarNameInTable="columnlngRecordID" msprop:Generator_ColumnPropNameInTable="lngRecordIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Dep" msprop:Generator_UserColumnName="Dep" msprop:Generator_ColumnPropNameInRow="Dep" msprop:Generator_ColumnVarNameInTable="columnDep" msprop:Generator_ColumnPropNameInTable="DepColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Refund" msprop:Generator_UserColumnName="Refund" msprop:Generator_ColumnPropNameInRow="Refund" msprop:Generator_ColumnVarNameInTable="columnRefund" msprop:Generator_ColumnPropNameInTable="RefundColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="lngTransTypeID" msprop:Generator_UserColumnName="lngTransTypeID" msprop:Generator_ColumnPropNameInRow="lngTransTypeID" msprop:Generator_ColumnVarNameInTable="columnlngTransTypeID" msprop:Generator_ColumnPropNameInTable="lngTransTypeIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="InitDep" msdata:ReadOnly="true" msprop:Generator_UserColumnName="InitDep" msprop:Generator_ColumnPropNameInRow="InitDep" msprop:Generator_ColumnVarNameInTable="columnInitDep" msprop:Generator_ColumnPropNameInTable="InitDepColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:AddtionalDeposits" />
+      <xs:field xpath="mstns:lngRegistrationID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

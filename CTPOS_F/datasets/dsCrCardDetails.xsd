@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsCrCardDetails" targetNamespace="http://tempuri.org/dsCrCardDetails.xsd" xmlns:mstns="http://tempuri.org/dsCrCardDetails.xsd" xmlns="http://tempuri.org/dsCrCardDetails.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ctPOS_bConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ctPOS_bConnectionString1 (MySettings)" PropertyReference="ApplicationSettings.CTPOS_F.My.MySettings.GlobalReference.Default.ctPOS_bConnectionString1" Provider="System.Data.OleDb">
+          </Connection>
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="qryCreditCardDetailsTableAdapter" GeneratorDataComponentClassName="qryCreditCardDetailsTableAdapter" Name="qryCreditCardDetails" UserDataComponentName="qryCreditCardDetailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctPOS_bConnectionString1 (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     tblSales.lngSaleID, tblStores.strStoreName, tblSales.lngStoreID, tblSales.dteSaleDate, tblClerks.strUserName, tblSales.lngClerkID, 
+                      tblSales.lngSaleTypeID, tlkpSalesType.strSaleType, tblSales.lngTransactionID, tblSales.lngPaymentTypeID, tlkpPaymentType.strPaymentType, 
+                      tblSales.strCCNumber, tblSales.strCCExpDate, tblSales.dteZdOut, tblSales.lngWSID, tblSales.strAuthNumber, tblSalesDetail.lngSaleID AS Expr1, 
+                      SUM(tblSalesDetail.curTotal) AS SumOfcurTotal
+FROM         (((((tblSales LEFT OUTER JOIN
+                      tblSalesDetail ON tblSales.lngSaleID = tblSalesDetail.lngSaleID) LEFT OUTER JOIN
+                      tblStores ON tblSales.lngStoreID = tblStores.lngStoreID) INNER JOIN
+                      tblClerks ON tblSales.lngClerkID = tblClerks.lngClerkID) INNER JOIN
+                      tlkpSalesType ON tblSales.lngSaleTypeID = tlkpSalesType.lngSaleTypeID) INNER JOIN
+                      tlkpPaymentType ON tblSales.lngPaymentTypeID = tlkpPaymentType.lngPaymentTypeID)
+GROUP BY tblSales.lngSaleID, tblStores.strStoreName, tblSales.lngStoreID, tblSales.dteSaleDate, tblClerks.strUserName, tblSales.lngClerkID, 
+                      tblSales.lngSaleTypeID, tlkpSalesType.strSaleType, tblSales.lngTransactionID, tblSales.lngPaymentTypeID, tlkpPaymentType.strPaymentType, 
+                      tblSales.strCCNumber, tblSales.strCCExpDate, tblSales.dteZdOut, tblSales.lngWSID, tblSales.strAuthNumber, tblSalesDetail.lngSaleID</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngSaleID" DataSetColumn="lngSaleID" />
+              <Mapping SourceColumn="strStoreName" DataSetColumn="strStoreName" />
+              <Mapping SourceColumn="lngStoreID" DataSetColumn="lngStoreID" />
+              <Mapping SourceColumn="dteSaleDate" DataSetColumn="dteSaleDate" />
+              <Mapping SourceColumn="strUserName" DataSetColumn="strUserName" />
+              <Mapping SourceColumn="lngClerkID" DataSetColumn="lngClerkID" />
+              <Mapping SourceColumn="lngSaleTypeID" DataSetColumn="lngSaleTypeID" />
+              <Mapping SourceColumn="strSaleType" DataSetColumn="strSaleType" />
+              <Mapping SourceColumn="lngTransactionID" DataSetColumn="lngTransactionID" />
+              <Mapping SourceColumn="lngPaymentTypeID" DataSetColumn="lngPaymentTypeID" />
+              <Mapping SourceColumn="strPaymentType" DataSetColumn="strPaymentType" />
+              <Mapping SourceColumn="strCCNumber" DataSetColumn="strCCNumber" />
+              <Mapping SourceColumn="strCCExpDate" DataSetColumn="strCCExpDate" />
+              <Mapping SourceColumn="dteZdOut" DataSetColumn="dteZdOut" />
+              <Mapping SourceColumn="lngWSID" DataSetColumn="lngWSID" />
+              <Mapping SourceColumn="strAuthNumber" DataSetColumn="strAuthNumber" />
+              <Mapping SourceColumn="Expr1" DataSetColumn="Expr1" />
+              <Mapping SourceColumn="SumOfcurTotal" DataSetColumn="SumOfcurTotal" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsCrCardDetails" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsCrCardDetails" msprop:Generator_DataSetName="dsCrCardDetails">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="qryCreditCardDetails" msprop:Generator_UserTableName="qryCreditCardDetails" msprop:Generator_RowDeletedName="qryCreditCardDetailsRowDeleted" msprop:Generator_TableClassName="qryCreditCardDetailsDataTable" msprop:Generator_RowChangedName="qryCreditCardDetailsRowChanged" msprop:Generator_RowClassName="qryCreditCardDetailsRow" msprop:Generator_RowChangingName="qryCreditCardDetailsRowChanging" msprop:Generator_RowEvArgName="qryCreditCardDetailsRowChangeEvent" msprop:Generator_RowEvHandlerName="qryCreditCardDetailsRowChangeEventHandler" msprop:Generator_TablePropName="qryCreditCardDetails" msprop:Generator_TableVarName="tableqryCreditCardDetails" msprop:Generator_RowDeletingName="qryCreditCardDetailsRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngSaleID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="lngSaleID" msprop:Generator_ColumnPropNameInRow="lngSaleID" msprop:Generator_ColumnVarNameInTable="columnlngSaleID" msprop:Generator_ColumnPropNameInTable="lngSaleIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="strStoreName" msprop:Generator_UserColumnName="strStoreName" msprop:Generator_ColumnPropNameInRow="strStoreName" msprop:Generator_ColumnVarNameInTable="columnstrStoreName" msprop:Generator_ColumnPropNameInTable="strStoreNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lngStoreID" msprop:Generator_UserColumnName="lngStoreID" msprop:Generator_ColumnPropNameInRow="lngStoreID" msprop:Generator_ColumnVarNameInTable="columnlngStoreID" msprop:Generator_ColumnPropNameInTable="lngStoreIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="dteSaleDate" msprop:Generator_UserColumnName="dteSaleDate" msprop:Generator_ColumnPropNameInRow="dteSaleDate" msprop:Generator_ColumnVarNameInTable="columndteSaleDate" msprop:Generator_ColumnPropNameInTable="dteSaleDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="strUserName" msprop:Generator_UserColumnName="strUserName" msprop:Generator_ColumnPropNameInRow="strUserName" msprop:Generator_ColumnVarNameInTable="columnstrUserName" msprop:Generator_ColumnPropNameInTable="strUserNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lngClerkID" msprop:Generator_UserColumnName="lngClerkID" msprop:Generator_ColumnPropNameInRow="lngClerkID" msprop:Generator_ColumnVarNameInTable="columnlngClerkID" msprop:Generator_ColumnPropNameInTable="lngClerkIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="lngSaleTypeID" msprop:Generator_UserColumnName="lngSaleTypeID" msprop:Generator_ColumnPropNameInRow="lngSaleTypeID" msprop:Generator_ColumnVarNameInTable="columnlngSaleTypeID" msprop:Generator_ColumnPropNameInTable="lngSaleTypeIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="strSaleType" msprop:Generator_UserColumnName="strSaleType" msprop:Generator_ColumnPropNameInRow="strSaleType" msprop:Generator_ColumnVarNameInTable="columnstrSaleType" msprop:Generator_ColumnPropNameInTable="strSaleTypeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lngTransactionID" msprop:Generator_UserColumnName="lngTransactionID" msprop:Generator_ColumnPropNameInRow="lngTransactionID" msprop:Generator_ColumnVarNameInTable="columnlngTransactionID" msprop:Generator_ColumnPropNameInTable="lngTransactionIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="lngPaymentTypeID" msprop:Generator_UserColumnName="lngPaymentTypeID" msprop:Generator_ColumnPropNameInRow="lngPaymentTypeID" msprop:Generator_ColumnVarNameInTable="columnlngPaymentTypeID" msprop:Generator_ColumnPropNameInTable="lngPaymentTypeIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="strPaymentType" msprop:Generator_UserColumnName="strPaymentType" msprop:Generator_ColumnPropNameInRow="strPaymentType" msprop:Generator_ColumnVarNameInTable="columnstrPaymentType" msprop:Generator_ColumnPropNameInTable="strPaymentTypeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strCCNumber" msprop:Generator_UserColumnName="strCCNumber" msprop:Generator_ColumnPropNameInRow="strCCNumber" msprop:Generator_ColumnVarNameInTable="columnstrCCNumber" msprop:Generator_ColumnPropNameInTable="strCCNumberColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strCCExpDate" msprop:Generator_UserColumnName="strCCExpDate" msprop:Generator_ColumnPropNameInRow="strCCExpDate" msprop:Generator_ColumnVarNameInTable="columnstrCCExpDate" msprop:Generator_ColumnPropNameInTable="strCCExpDateColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dteZdOut" msprop:Generator_UserColumnName="dteZdOut" msprop:Generator_ColumnPropNameInRow="dteZdOut" msprop:Generator_ColumnVarNameInTable="columndteZdOut" msprop:Generator_ColumnPropNameInTable="dteZdOutColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="lngWSID" msprop:Generator_UserColumnName="lngWSID" msprop:Generator_ColumnPropNameInRow="lngWSID" msprop:Generator_ColumnVarNameInTable="columnlngWSID" msprop:Generator_ColumnPropNameInTable="lngWSIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="strAuthNumber" msprop:Generator_UserColumnName="strAuthNumber" msprop:Generator_ColumnPropNameInRow="strAuthNumber" msprop:Generator_ColumnVarNameInTable="columnstrAuthNumber" msprop:Generator_ColumnPropNameInTable="strAuthNumberColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr1" msprop:Generator_UserColumnName="Expr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" type="xs:int" minOccurs="0" />
+              <xs:element name="SumOfcurTotal" msprop:Generator_UserColumnName="SumOfcurTotal" msprop:Generator_ColumnPropNameInRow="SumOfcurTotal" msprop:Generator_ColumnVarNameInTable="columnSumOfcurTotal" msprop:Generator_ColumnPropNameInTable="SumOfcurTotalColumn" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

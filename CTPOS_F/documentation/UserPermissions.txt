@@ -1,0 +1,4 @@
+﻿POS user must have 'CREATE VIEW' privileges.  To grant right-click database name-->Properties-->Permissions.  Check box for user.
+
+User must also have 'ALTER' privileges for the dbo schema.  To grant, select Database name-->Security-->Schemas-->dbo.
+Right-click dbo and select properties.  Select permissions and click the 'Add' button.  Find the pos user and check the alter box.

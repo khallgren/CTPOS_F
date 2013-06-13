@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSqryTSTWithdrawalLabels" targetNamespace="http://tempuri.org/DSqryTSTWithdrawalLabels.xsd" xmlns:mstns="http://tempuri.org/DSqryTSTWithdrawalLabels.xsd" xmlns="http://tempuri.org/DSqryTSTWithdrawalLabels.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ctPOS_bConnectionString1" IsAppSettingsProperty="True" Modifier="Assembly" Name="ctPOS_bConnectionString1 (MySettings)" PropertyReference="ApplicationSettings.CTPOS_F.My.MySettings.GlobalReference.Default.ctPOS_bConnectionString1" Provider="System.Data.OleDb">
+          </Connection>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ctmain_bConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ctmain_bConnectionString (MySettings)" PropertyReference="ApplicationSettings.CTPOS_F.My.MySettings.GlobalReference.Default.ctmain_bConnectionString" Provider="System.Data.OleDb">
+          </Connection>
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="qryTSTWithdrawalLablesTableAdapter" GeneratorDataComponentClassName="qryTSTWithdrawalLablesTableAdapter" Name="qryTSTWithdrawalLables" UserDataComponentName="qryTSTWithdrawalLablesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctmain_bConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="False">
+                    <CommandText>SELECT     tblRegistrations.lngRecordID, tblRecords.strFirstName, tblRecords.strLastCoName, SUM(tblTransactions.curPayment) AS Payments, 
+                      SUM(tblTransactions.curCharge) AS Charges, Charges - Payments AS Balance, tlkpWeekDesc.strWeekDesc, tblRegistrations.lngBlockID
+FROM         (tlkpWeekDesc INNER JOIN
+                      ((tblRecords INNER JOIN
+                      (tblTransactions INNER JOIN
+                      tblRegistrations ON tblTransactions.lngRegistrationID = tblRegistrations.lngRegistrationID) ON tblRecords.lngRecordID = tblRegistrations.lngRecordID) 
+                      INNER JOIN
+                      tblBlock ON tblRegistrations.lngBlockID = tblBlock.lngBlockID) ON tlkpWeekDesc.lngWeekID = tblBlock.lngWeekID)
+GROUP BY tblRegistrations.lngRecordID, tblRecords.strFirstName, tblRecords.strLastCoName, tlkpWeekDesc.strWeekDesc, tblRegistrations.lngBlockID</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngBlockID" DataSetColumn="lngBlockID" />
+              <Mapping SourceColumn="strLastCoName" DataSetColumn="strLastCoName" />
+              <Mapping SourceColumn="strFirstName" DataSetColumn="strFirstName" />
+              <Mapping SourceColumn="Balance" DataSetColumn="Balance" />
+              <Mapping SourceColumn="lngRecordID" DataSetColumn="lngRecordID" />
+              <Mapping SourceColumn="Payments" DataSetColumn="Payments" />
+              <Mapping SourceColumn="Charges" DataSetColumn="Charges" />
+              <Mapping SourceColumn="strWeekDesc" DataSetColumn="strWeekDesc" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSqryTSTWithdrawalLabels" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DSqryTSTWithdrawalLabels" msprop:Generator_DataSetName="DSqryTSTWithdrawalLabels">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="qryTSTWithdrawalLables" msprop:Generator_UserTableName="qryTSTWithdrawalLables" msprop:Generator_RowDeletedName="qryTSTWithdrawalLablesRowDeleted" msprop:Generator_RowChangedName="qryTSTWithdrawalLablesRowChanged" msprop:Generator_RowClassName="qryTSTWithdrawalLablesRow" msprop:Generator_RowChangingName="qryTSTWithdrawalLablesRowChanging" msprop:Generator_RowEvArgName="qryTSTWithdrawalLablesRowChangeEvent" msprop:Generator_RowEvHandlerName="qryTSTWithdrawalLablesRowChangeEventHandler" msprop:Generator_TableClassName="qryTSTWithdrawalLablesDataTable" msprop:Generator_TableVarName="tableqryTSTWithdrawalLables" msprop:Generator_RowDeletingName="qryTSTWithdrawalLablesRowDeleting" msprop:Generator_TablePropName="qryTSTWithdrawalLables">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngBlockID" msprop:Generator_UserColumnName="lngBlockID" msprop:Generator_ColumnVarNameInTable="columnlngBlockID" msprop:Generator_ColumnPropNameInRow="lngBlockID" msprop:Generator_ColumnPropNameInTable="lngBlockIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="strLastCoName" msprop:Generator_UserColumnName="strLastCoName" msprop:Generator_ColumnVarNameInTable="columnstrLastCoName" msprop:Generator_ColumnPropNameInRow="strLastCoName" msprop:Generator_ColumnPropNameInTable="strLastCoNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strFirstName" msprop:Generator_UserColumnName="strFirstName" msprop:Generator_ColumnVarNameInTable="columnstrFirstName" msprop:Generator_ColumnPropNameInRow="strFirstName" msprop:Generator_ColumnPropNameInTable="strFirstNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Balance" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Balance" msprop:Generator_ColumnVarNameInTable="columnBalance" msprop:Generator_ColumnPropNameInRow="Balance" msprop:Generator_ColumnPropNameInTable="BalanceColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="lngRecordID" msprop:Generator_UserColumnName="lngRecordID" msprop:Generator_ColumnPropNameInRow="lngRecordID" msprop:Generator_ColumnVarNameInTable="columnlngRecordID" msprop:Generator_ColumnPropNameInTable="lngRecordIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="Payments" msprop:Generator_UserColumnName="Payments" msprop:Generator_ColumnPropNameInRow="Payments" msprop:Generator_ColumnVarNameInTable="columnPayments" msprop:Generator_ColumnPropNameInTable="PaymentsColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Charges" msprop:Generator_UserColumnName="Charges" msprop:Generator_ColumnPropNameInRow="Charges" msprop:Generator_ColumnVarNameInTable="columnCharges" msprop:Generator_ColumnPropNameInTable="ChargesColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strWeekDesc" msprop:Generator_UserColumnName="strWeekDesc" msprop:Generator_ColumnPropNameInRow="strWeekDesc" msprop:Generator_ColumnVarNameInTable="columnstrWeekDesc" msprop:Generator_ColumnPropNameInTable="strWeekDescColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsMonthlyInv" targetNamespace="http://tempuri.org/dsMonthlyInv.xsd" xmlns:mstns="http://tempuri.org/dsMonthlyInv.xsd" xmlns="http://tempuri.org/dsMonthlyInv.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="ctPOS_bConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="ctPOS_bConnectionString1 (MySettings)" PropertyReference="ApplicationSettings.CTPOS_F.My.MySettings.GlobalReference.Default.ctPOS_bConnectionString1" Provider="System.Data.OleDb">
+          </Connection>
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="qrptMonthlyInvTableAdapter" GeneratorDataComponentClassName="qrptMonthlyInvTableAdapter" Name="qrptMonthlyInv" UserDataComponentName="qrptMonthlyInvTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ctPOS_bConnectionString1 (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     tblInventory.lngInventoryID, tblInventory.strItemName, tblInventory.intCurrentQty - tmpTblMonthlyInvTotAdjBegin.TotAdjBeg AS BegInv, 
+                      tblInventory.intCurrentQty - tmpTblMo.TotAdjEnd AS EndInv, tblInventory.intCurrentQty, tblInventory.blnNonStock, tblInventory.strStockCode, 
+                      tblInventory.strDescription, tblInventory.curCost, tblInventory.curListPrice, tmpTblInvPerStore.lngStoreID
+FROM         (((tblInventory INNER JOIN
+                      tmpTblInvPerStore ON tblInventory.lngInventoryID = tmpTblInvPerStore.lngInventoryID) LEFT OUTER JOIN
+                      tmpTblMonthlyInvTotAdjBegin ON tmpTblInvPerStore.lngInventoryID = tmpTblMonthlyInvTotAdjBegin.lngInventoryId AND 
+                      tmpTblInvPerStore.lngStoreID = tmpTblMonthlyInvTotAdjBegin.lngStoreId) LEFT OUTER JOIN
+                      tmpTblMo ON tmpTblInvPerStore.lngInventoryID = tmpTblMo.lngInventoryID AND tmpTblInvPerStore.lngStoreID = tmpTblMo.lngStoreID)
+WHERE     (tblInventory.blnNonStock = 0)
+ORDER BY tblInventory.lngInventoryID, tblInventory.strItemName DESC</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="lngInventoryID" DataSetColumn="lngInventoryID" />
+              <Mapping SourceColumn="strItemName" DataSetColumn="strItemName" />
+              <Mapping SourceColumn="BegInv" DataSetColumn="BegInv" />
+              <Mapping SourceColumn="EndInv" DataSetColumn="EndInv" />
+              <Mapping SourceColumn="intCurrentQty" DataSetColumn="intCurrentQty" />
+              <Mapping SourceColumn="blnNonStock" DataSetColumn="blnNonStock" />
+              <Mapping SourceColumn="strStockCode" DataSetColumn="strStockCode" />
+              <Mapping SourceColumn="strDescription" DataSetColumn="strDescription" />
+              <Mapping SourceColumn="curCost" DataSetColumn="curCost" />
+              <Mapping SourceColumn="curListPrice" DataSetColumn="curListPrice" />
+              <Mapping SourceColumn="lngStoreID" DataSetColumn="lngStoreID" />
+            </Mappings>
+            <Sources>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsMonthlyInv" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="dsMonthlyInv" msprop:Generator_DataSetName="dsMonthlyInv">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="qrptMonthlyInv" msprop:Generator_UserTableName="qrptMonthlyInv" msprop:Generator_RowDeletedName="qrptMonthlyInvRowDeleted" msprop:Generator_RowChangedName="qrptMonthlyInvRowChanged" msprop:Generator_RowClassName="qrptMonthlyInvRow" msprop:Generator_RowChangingName="qrptMonthlyInvRowChanging" msprop:Generator_RowEvArgName="qrptMonthlyInvRowChangeEvent" msprop:Generator_RowEvHandlerName="qrptMonthlyInvRowChangeEventHandler" msprop:Generator_TableClassName="qrptMonthlyInvDataTable" msprop:Generator_TableVarName="tableqrptMonthlyInv" msprop:Generator_RowDeletingName="qrptMonthlyInvRowDeleting" msprop:Generator_TablePropName="qrptMonthlyInv">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="lngInventoryID" msdata:AutoIncrement="true" msprop:Generator_UserColumnName="lngInventoryID" msprop:Generator_ColumnPropNameInRow="lngInventoryID" msprop:Generator_ColumnVarNameInTable="columnlngInventoryID" msprop:Generator_ColumnPropNameInTable="lngInventoryIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="strItemName" msprop:Generator_UserColumnName="strItemName" msprop:Generator_ColumnPropNameInRow="strItemName" msprop:Generator_ColumnVarNameInTable="columnstrItemName" msprop:Generator_ColumnPropNameInTable="strItemNameColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="24" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BegInv" msdata:ReadOnly="true" msprop:Generator_UserColumnName="BegInv" msprop:Generator_ColumnPropNameInRow="BegInv" msprop:Generator_ColumnVarNameInTable="columnBegInv" msprop:Generator_ColumnPropNameInTable="BegInvColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="EndInv" msdata:ReadOnly="true" msprop:Generator_UserColumnName="EndInv" msprop:Generator_ColumnPropNameInRow="EndInv" msprop:Generator_ColumnVarNameInTable="columnEndInv" msprop:Generator_ColumnPropNameInTable="EndInvColumn" type="xs:double" minOccurs="0" />
+              <xs:element name="intCurrentQty" msprop:Generator_UserColumnName="intCurrentQty" msprop:Generator_ColumnPropNameInRow="intCurrentQty" msprop:Generator_ColumnVarNameInTable="columnintCurrentQty" msprop:Generator_ColumnPropNameInTable="intCurrentQtyColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="blnNonStock" msprop:Generator_UserColumnName="blnNonStock" msprop:Generator_ColumnPropNameInRow="blnNonStock" msprop:Generator_ColumnVarNameInTable="columnblnNonStock" msprop:Generator_ColumnPropNameInTable="blnNonStockColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="strStockCode" msprop:Generator_UserColumnName="strStockCode" msprop:Generator_ColumnPropNameInRow="strStockCode" msprop:Generator_ColumnVarNameInTable="columnstrStockCode" msprop:Generator_ColumnPropNameInTable="strStockCodeColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strDescription" msprop:Generator_UserColumnName="strDescription" msprop:Generator_ColumnPropNameInRow="strDescription" msprop:Generator_ColumnVarNameInTable="columnstrDescription" msprop:Generator_ColumnPropNameInTable="strDescriptionColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="536870910" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="curCost" msprop:Generator_UserColumnName="curCost" msprop:Generator_ColumnPropNameInRow="curCost" msprop:Generator_ColumnVarNameInTable="columncurCost" msprop:Generator_ColumnPropNameInTable="curCostColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="curListPrice" msprop:Generator_UserColumnName="curListPrice" msprop:Generator_ColumnPropNameInRow="curListPrice" msprop:Generator_ColumnVarNameInTable="columncurListPrice" msprop:Generator_ColumnPropNameInTable="curListPriceColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="lngStoreID" msprop:Generator_UserColumnName="lngStoreID" msprop:Generator_ColumnPropNameInRow="lngStoreID" msprop:Generator_ColumnVarNameInTable="columnlngStoreID" msprop:Generator_ColumnPropNameInTable="lngStoreIDColumn" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

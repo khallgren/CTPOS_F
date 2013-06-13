@@ -1,0 +1,8 @@
+﻿How to change text of object at runtime:
+CType(objStoreSummary.ReportDefinition.ReportObjects("txtCaption"), CrystalDecisions.CrystalReports.Engine.TextObject).Text = strCaption
+
+When prompt for login:
+1.  Try forcing logon info (see subSetLogon in frmCCSalesPreview)
+
+2.  Make sure source table name matches original query name from report devolopment.  For example:  If rptTest was developed based on qrptTest then
+Me.daTest.Fill(Me.dsTest, "qrptSomeOtherName") may not work.  Do this instead: Me.daTest.Fill(Me.dsTest, "qrptTest").

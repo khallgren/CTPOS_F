@@ -1,0 +1,120 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="ctPOS_bConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=KINGTUBBY\SQLEXPRESS;Initial Catalog=CTPOS_B;Persist Security Info=True;User ID=ctposu;Password=ctposp&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=KINGTUBBY\SQLEXPRESS;Initial Catalog=CTPOS_B;Persist Security Info=True;User ID=ctposu;Password=ctposp</Value>
+    </Setting>
+    <Setting Name="ctmain_bConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Provider=Microsoft.Jet.OLEDB.4.0;Data Source="D:\My Documents\Visual Studio 2005\Projects\CTPOS_F\ctmain_b.mdb"&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.OleDb&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Provider=Microsoft.Jet.OLEDB.4.0;Data Source="D:\My Documents\Visual Studio 2005\Projects\CTPOS_F\ctmain_b.mdb"</Value>
+    </Setting>
+    <Setting Name="lngStoreID" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="lngWSID" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="dblTaxRate" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.06</Value>
+    </Setting>
+    <Setting Name="MainPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="POSPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SQLServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SQLDatabase" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SQLUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ctuser</Value>
+    </Setting>
+    <Setting Name="SQLPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="strDrawerPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RcptPrinter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MS</Value>
+    </Setting>
+    <Setting Name="RcptFooter1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Thank you for visiting our store!</Value>
+    </Setting>
+    <Setting Name="RcptFooter2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Come Again!</Value>
+    </Setting>
+    <Setting Name="RcptHeader" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Camp Wildwind Pines</Value>
+    </Setting>
+    <Setting Name="UseSQLServer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FirstSetup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="blnUseDrawer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CampTrakStore_net_donatelinq_SmartPayments" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://donatelinq.net/smartpayments/transact.asmx</Value>
+    </Setting>
+    <Setting Name="lngLiveCharge" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="strXChargePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="strCashLinqUName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">LatitudeS</Value>
+    </Setting>
+    <Setting Name="strCashLinqPW" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5ITGJDnR</Value>
+    </Setting>
+    <Setting Name="blnCamperSort" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="blnUseBell" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="blnUsePrinter" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="intLinesBefore" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="intLinesAfter" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="blnOneCCReceipt" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="strCraftID" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">1375</Value>
+    </Setting>
+    <Setting Name="ctpos_bConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=TONY\SQLEXPRESS;Initial Catalog=ctpos_b;Persist Security Info=True;User ID=sa;Password=Varsity1&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=TONY\SQLEXPRESS;Initial Catalog=ctpos_b;Persist Security Info=True;User ID=sa;Password=Varsity1</Value>
+    </Setting>
+    <Setting Name="blnUpdateSettings" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

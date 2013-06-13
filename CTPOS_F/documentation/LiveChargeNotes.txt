@@ -1,0 +1,17 @@
+CashLinq:
+Web service based solution. Need access to web.
+Account set by entering user name and password (provided by CashLinq) on settings screen.
+Default is the latitude test account which will approve transactions <= $1.00.
+
+X-Charge:
+dll/api based solution.
+X-charge server must be installed (instructions and needed files located in 
+application\XChargeServer directory) and configured on at least one machine on network.
+Path must be defined in system settings that tells application where to drop transaction request
+files for X-Charge server.
+You may need to manually register the application\XCTransaction2.dll driver to compile the
+solution.
+
+%B5499990123456781^TESTCARD/MASTERCARD/NDCECOMMERCE^0908101543219871234567890?;5499990123456781=09081015432198712345?
+
+ 
